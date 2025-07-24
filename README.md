@@ -54,11 +54,6 @@
 5.  Maksimum kaç sonuç istediğinizi belirtin.
 6.  "Aramayı Başlat" butonuna tıklayın ve arkanıza yaslanın!
 
----
-
-## 📸 Ekran Görüntüleri
-
-*(Buraya programınızdan birkaç farklı ekran görüntüsü ekleyebilirsiniz. Örneğin, ana arayüz, sağ tık menüsü, Excel çıktısı vb.)*
 
 ---
 
