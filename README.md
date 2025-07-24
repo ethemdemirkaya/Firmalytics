@@ -2,8 +2,7 @@
 
 **Firmalytics**, C# WinForms ve Selenium teknolojileri kullanılarak geliştirilmiş, Google Haritalar üzerinden hedef şirket ve işletmelerin iletişim bilgilerini, web sitelerini, adreslerini ve daha fazlasını otomatik olarak toplayan güçlü bir otomasyon aracıdır. Özellikle B2B satış, pazarlama ve iş geliştirme profesyonelleri için potansiyel müşteri (lead generation) sürecini otomatize etmek amacıyla tasarlanmıştır.
 
-![Firmalytics Arayüz Görüntüsü](https-github-com-kullaniciadi-firmalytics-blob-main-screenshot-png) 
-*(Not: Bu linki kendi ekran görüntünüzün linki ile değiştirin)*
+![Firmalytics Arayüz Görüntüsü](Images/MainFirmalytics.png) 
 
 ---
 
