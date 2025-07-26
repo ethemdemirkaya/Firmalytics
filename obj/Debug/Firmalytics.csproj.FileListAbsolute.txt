@@ -69,3 +69,10 @@ C:\Users\ethem\source\repos\Firmalytics\bin\Debug\DevExpress.XtraBars.v25.1.xml
 C:\Users\ethem\source\repos\Firmalytics\bin\Debug\DevExpress.RichEdit.v25.1.Core.xml
 C:\Users\ethem\source\repos\Firmalytics\bin\Debug\DevExpress.XtraTreeList.v25.1.xml
 C:\Users\ethem\source\repos\Firmalytics\bin\Debug\DevExpress.Office.v25.1.Core.xml
+C:\Users\ethem\source\repos\Firmalytics\obj\Debug\Firmalytics.exe.config
+C:\Users\ethem\source\repos\Firmalytics\bin\Debug\WebDriver.Support.dll
+C:\Users\ethem\source\repos\Firmalytics\bin\Debug\WebDriver.Support.xml
+C:\Users\ethem\source\repos\Firmalytics\bin\Debug\DevExpress.Map.v25.1.Core.dll
+C:\Users\ethem\source\repos\Firmalytics\bin\Debug\DevExpress.XtraMap.v25.1.dll
+C:\Users\ethem\source\repos\Firmalytics\bin\Debug\DevExpress.Map.v25.1.Core.xml
+C:\Users\ethem\source\repos\Firmalytics\bin\Debug\DevExpress.XtraMap.v25.1.xml

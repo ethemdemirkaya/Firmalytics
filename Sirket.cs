@@ -8,21 +8,17 @@ namespace Firmalytics
 {
     public class Sirket
     {
-        public string IsletmeAdi { get; set; }
-        public string Adres { get; set; }
-        public string Telefon { get; set; }
-        public string WebSitesi { get; set; }
-        public string Puan { get; set; }
-        public string YorumSayisi { get; set; }
-        public string Kategori { get; set; } // Bu alan şimdilik boş kalabilir, Haritalar'dan çekmek zor.
-        public string HaritaLinki { get; set; } // Bunu doğrudan driver.Url ile dolduracağız.
-
-        // YENİ EKLENEN ALANLAR
+        public string IsletmeAdi { get; set; } = "Bulunamadı";
+        public string Adres { get; set; } = "Bulunamadı";
+        public string Telefon { get; set; } = "Bulunamadı";
+        public string WebSitesi { get; set; } = "Bulunamadı";
+        public string Puan { get; set; } = "Bulunamadı";
+        public string YorumSayisi { get; set; } = "Bulunamadı";
+        public string HaritaLinki { get; set; } = "Bulunamadı";
         public double Enlem { get; set; }
         public double Boylam { get; set; }
-
-        public string Eposta { get; set; }
-        public string LinkedIn { get; set; }
-        public string Notlar { get; set; }
+        public string Eposta { get; set; } = "Aranmadı"; // Yeni eklendi
+        public string LinkedIn { get; set; } = "Aranmadı"; // Yeni eklendi
+        public string Notlar { get; set; } // Yeni eklendi
     }
 }
