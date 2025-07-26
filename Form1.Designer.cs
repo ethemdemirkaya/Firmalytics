@@ -45,7 +45,22 @@
             this.pnlKontrol = new Guna.UI2.WinForms.Guna2Panel();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.spinWebsiteTimeout = new DevExpress.XtraEditors.SpinEdit();
+            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.menuAdresKopyala = new DevExpress.XtraBars.BarButtonItem();
+            this.menuTelefonKopyala = new DevExpress.XtraBars.BarButtonItem();
+            this.menuGoogleAdresiniKopyala = new DevExpress.XtraBars.BarButtonItem();
+            this.menuWebSitesiGit = new DevExpress.XtraBars.BarButtonItem();
+            this.menuEpostaKopyala = new DevExpress.XtraBars.BarButtonItem();
+            this.menuLinkedInKopyala = new DevExpress.XtraBars.BarButtonItem();
+            this.menuHaritadaGoster = new DevExpress.XtraBars.BarButtonItem();
+            this.checkEditEpostaAra = new DevExpress.XtraEditors.CheckEdit();
+            this.btnDurdur = new Guna.UI2.WinForms.Guna2GradientTileButton();
             this.btnAramayiBaslat = new Guna.UI2.WinForms.Guna2GradientTileButton();
             this.spinAramaDerinligi = new DevExpress.XtraEditors.SpinEdit();
             this.txtAnahtarKelime = new DevExpress.XtraEditors.TextEdit();
@@ -57,21 +72,15 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
             this.gridControlSirketler = new DevExpress.XtraGrid.GridControl();
             this.gridViewSirketler = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.guna2GradientTileButton2 = new Guna.UI2.WinForms.Guna2GradientTileButton();
             this.popupMenuSirket = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.menuAdresKopyala = new DevExpress.XtraBars.BarButtonItem();
-            this.menuTelefonKopyala = new DevExpress.XtraBars.BarButtonItem();
-            this.menuGoogleAdresiniKopyala = new DevExpress.XtraBars.BarButtonItem();
-            this.menuWebSitesiGit = new DevExpress.XtraBars.BarButtonItem();
-            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
-            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.checkEditTarayiciGoster = new DevExpress.XtraEditors.CheckEdit();
+            this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoLogPenceresi.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
@@ -87,7 +96,9 @@
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinWebsiteTimeout.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditEpostaAra.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinAramaDerinligi.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAnahtarKelime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtKonum.Properties)).BeginInit();
@@ -98,11 +109,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             this.guna2Panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlSirketler)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewSirketler)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuSirket)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditTarayiciGoster.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             this.SuspendLayout();
             // 
             // guna2Panel1
@@ -283,7 +297,10 @@
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Controls.Add(this.panelControl1);
+            this.layoutControl1.Controls.Add(this.checkEditTarayiciGoster);
+            this.layoutControl1.Controls.Add(this.spinWebsiteTimeout);
+            this.layoutControl1.Controls.Add(this.checkEditEpostaAra);
+            this.layoutControl1.Controls.Add(this.btnDurdur);
             this.layoutControl1.Controls.Add(this.btnAramayiBaslat);
             this.layoutControl1.Controls.Add(this.spinAramaDerinligi);
             this.layoutControl1.Controls.Add(this.txtAnahtarKelime);
@@ -303,13 +320,176 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
-            // panelControl1
+            // spinWebsiteTimeout
             // 
-            this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panelControl1.Location = new System.Drawing.Point(17, 301);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(285, 43);
-            this.panelControl1.TabIndex = 10;
+            this.spinWebsiteTimeout.EditValue = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            this.spinWebsiteTimeout.Location = new System.Drawing.Point(255, 159);
+            this.spinWebsiteTimeout.MenuManager = this.barManager1;
+            this.spinWebsiteTimeout.Name = "spinWebsiteTimeout";
+            this.spinWebsiteTimeout.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spinWebsiteTimeout.Properties.IsFloatValue = false;
+            this.spinWebsiteTimeout.Properties.MaskSettings.Set("mask", "N00");
+            this.spinWebsiteTimeout.Properties.MaxValue = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            this.spinWebsiteTimeout.Properties.MinValue = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.spinWebsiteTimeout.Size = new System.Drawing.Size(241, 40);
+            this.spinWebsiteTimeout.StyleController = this.layoutControl1;
+            this.spinWebsiteTimeout.TabIndex = 12;
+            // 
+            // barManager1
+            // 
+            this.barManager1.DockControls.Add(this.barDockControlTop);
+            this.barManager1.DockControls.Add(this.barDockControlBottom);
+            this.barManager1.DockControls.Add(this.barDockControlLeft);
+            this.barManager1.DockControls.Add(this.barDockControlRight);
+            this.barManager1.Form = this;
+            this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.barButtonItem1,
+            this.menuAdresKopyala,
+            this.menuTelefonKopyala,
+            this.menuGoogleAdresiniKopyala,
+            this.menuWebSitesiGit,
+            this.menuEpostaKopyala,
+            this.menuLinkedInKopyala,
+            this.menuHaritadaGoster});
+            this.barManager1.MaxItemId = 8;
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Manager = this.barManager1;
+            this.barDockControlTop.Size = new System.Drawing.Size(1198, 0);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 597);
+            this.barDockControlBottom.Manager = this.barManager1;
+            this.barDockControlBottom.Size = new System.Drawing.Size(1198, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlLeft.Manager = this.barManager1;
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 597);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(1198, 0);
+            this.barDockControlRight.Manager = this.barManager1;
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 597);
+            // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "barButtonItem1";
+            this.barButtonItem1.Id = 0;
+            this.barButtonItem1.Name = "barButtonItem1";
+            // 
+            // menuAdresKopyala
+            // 
+            this.menuAdresKopyala.Caption = "Adresi Kopyala";
+            this.menuAdresKopyala.Id = 1;
+            this.menuAdresKopyala.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("menuAdresKopyala.ImageOptions.SvgImage")));
+            this.menuAdresKopyala.Name = "menuAdresKopyala";
+            this.menuAdresKopyala.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuAdresKopyala_ItemClick);
+            // 
+            // menuTelefonKopyala
+            // 
+            this.menuTelefonKopyala.Caption = "Telefonu Kopyala";
+            this.menuTelefonKopyala.Id = 2;
+            this.menuTelefonKopyala.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("menuTelefonKopyala.ImageOptions.SvgImage")));
+            this.menuTelefonKopyala.Name = "menuTelefonKopyala";
+            this.menuTelefonKopyala.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuTelefonKopyala_ItemClick);
+            // 
+            // menuGoogleAdresiniKopyala
+            // 
+            this.menuGoogleAdresiniKopyala.Caption = "Google Harita Linkini Kopyala";
+            this.menuGoogleAdresiniKopyala.Id = 3;
+            this.menuGoogleAdresiniKopyala.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("menuGoogleAdresiniKopyala.ImageOptions.SvgImage")));
+            this.menuGoogleAdresiniKopyala.Name = "menuGoogleAdresiniKopyala";
+            this.menuGoogleAdresiniKopyala.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuGoogleAdresiniKopyala_ItemClick);
+            // 
+            // menuWebSitesiGit
+            // 
+            this.menuWebSitesiGit.Caption = "Website\'ye Git";
+            this.menuWebSitesiGit.Id = 4;
+            this.menuWebSitesiGit.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("menuWebSitesiGit.ImageOptions.SvgImage")));
+            this.menuWebSitesiGit.Name = "menuWebSitesiGit";
+            this.menuWebSitesiGit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuWebSitesiGit_ItemClick);
+            // 
+            // menuEpostaKopyala
+            // 
+            this.menuEpostaKopyala.Caption = "E-posta Adresini Kopyala";
+            this.menuEpostaKopyala.Id = 5;
+            this.menuEpostaKopyala.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("menuEpostaKopyala.ImageOptions.SvgImage")));
+            this.menuEpostaKopyala.Name = "menuEpostaKopyala";
+            this.menuEpostaKopyala.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuEpostaKopyala_ItemClick);
+            // 
+            // menuLinkedInKopyala
+            // 
+            this.menuLinkedInKopyala.Caption = "LinkedIn Adresini Kopyala";
+            this.menuLinkedInKopyala.Id = 6;
+            this.menuLinkedInKopyala.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("menuLinkedInKopyala.ImageOptions.SvgImage")));
+            this.menuLinkedInKopyala.Name = "menuLinkedInKopyala";
+            this.menuLinkedInKopyala.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuLinkedInKopyala_ItemClick);
+            // 
+            // menuHaritadaGoster
+            // 
+            this.menuHaritadaGoster.Caption = "Haritada Göster";
+            this.menuHaritadaGoster.Id = 7;
+            this.menuHaritadaGoster.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("menuHaritadaGoster.ImageOptions.SvgImage")));
+            this.menuHaritadaGoster.Name = "menuHaritadaGoster";
+            // 
+            // checkEditEpostaAra
+            // 
+            this.checkEditEpostaAra.Location = new System.Drawing.Point(17, 205);
+            this.checkEditEpostaAra.MenuManager = this.barManager1;
+            this.checkEditEpostaAra.Name = "checkEditEpostaAra";
+            this.checkEditEpostaAra.Properties.AllowFocused = false;
+            this.checkEditEpostaAra.Properties.Caption = "E-posta ve Sosyal Medya Bilgilerini Ara (Daha Yavaş)";
+            this.checkEditEpostaAra.Size = new System.Drawing.Size(479, 28);
+            this.checkEditEpostaAra.StyleController = this.layoutControl1;
+            this.checkEditEpostaAra.TabIndex = 11;
+            // 
+            // btnDurdur
+            // 
+            this.btnDurdur.BackColor = System.Drawing.Color.Transparent;
+            this.btnDurdur.BorderRadius = 6;
+            this.btnDurdur.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnDurdur.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnDurdur.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnDurdur.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnDurdur.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnDurdur.Enabled = false;
+            this.btnDurdur.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(75)))), ((int)(((byte)(43)))));
+            this.btnDurdur.FillColor2 = System.Drawing.Color.Red;
+            this.btnDurdur.Font = new System.Drawing.Font("Segoe UI", 12.22642F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnDurdur.ForeColor = System.Drawing.Color.White;
+            this.btnDurdur.Location = new System.Drawing.Point(17, 289);
+            this.btnDurdur.Name = "btnDurdur";
+            this.btnDurdur.Size = new System.Drawing.Size(236, 55);
+            this.btnDurdur.TabIndex = 10;
+            this.btnDurdur.Text = "Aramayı Durdur";
+            this.btnDurdur.Click += new System.EventHandler(this.btnDurdur_Click);
             // 
             // btnAramayiBaslat
             // 
@@ -324,9 +504,9 @@
             this.btnAramayiBaslat.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
             this.btnAramayiBaslat.Font = new System.Drawing.Font("Segoe UI", 12.22642F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnAramayiBaslat.ForeColor = System.Drawing.Color.White;
-            this.btnAramayiBaslat.Location = new System.Drawing.Point(308, 301);
+            this.btnAramayiBaslat.Location = new System.Drawing.Point(259, 289);
             this.btnAramayiBaslat.Name = "btnAramayiBaslat";
-            this.btnAramayiBaslat.Size = new System.Drawing.Size(188, 43);
+            this.btnAramayiBaslat.Size = new System.Drawing.Size(237, 55);
             this.btnAramayiBaslat.TabIndex = 9;
             this.btnAramayiBaslat.Text = "Aramayı Başlat";
             this.btnAramayiBaslat.Click += new System.EventHandler(this.btnAramayiBaslat_Click);
@@ -338,7 +518,7 @@
             0,
             0,
             0});
-            this.spinAramaDerinligi.Location = new System.Drawing.Point(174, 113);
+            this.spinAramaDerinligi.Location = new System.Drawing.Point(255, 113);
             this.spinAramaDerinligi.Name = "spinAramaDerinligi";
             this.spinAramaDerinligi.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -352,7 +532,7 @@
             0,
             0,
             0});
-            this.spinAramaDerinligi.Size = new System.Drawing.Size(322, 40);
+            this.spinAramaDerinligi.Size = new System.Drawing.Size(241, 40);
             this.spinAramaDerinligi.StyleController = this.layoutControl1;
             this.spinAramaDerinligi.TabIndex = 8;
             // 
@@ -395,7 +575,10 @@
             this.layoutControlItem2,
             this.layoutControlItem3,
             this.layoutControlItem4,
-            this.layoutControlItem5});
+            this.layoutControlItem5,
+            this.layoutControlItem9,
+            this.layoutControlItem10,
+            this.layoutControlItem11});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(513, 361);
             this.Root.TextVisible = false;
@@ -410,9 +593,9 @@
             // 
             // emptySpaceItem1
             // 
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 142);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 256);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(485, 142);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(485, 16);
             // 
             // layoutControlItem2
             // 
@@ -429,23 +612,40 @@
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(485, 46);
             this.layoutControlItem3.Text = "Max Sonuç Sayısı:";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(139, 24);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(220, 24);
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.btnAramayiBaslat;
-            this.layoutControlItem4.Location = new System.Drawing.Point(291, 284);
+            this.layoutControlItem4.Location = new System.Drawing.Point(242, 272);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(194, 49);
+            this.layoutControlItem4.Size = new System.Drawing.Size(243, 61);
             this.layoutControlItem4.TextVisible = false;
             // 
             // layoutControlItem5
             // 
-            this.layoutControlItem5.Control = this.panelControl1;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 284);
+            this.layoutControlItem5.Control = this.btnDurdur;
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 272);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(291, 49);
+            this.layoutControlItem5.Size = new System.Drawing.Size(242, 61);
             this.layoutControlItem5.TextVisible = false;
+            // 
+            // layoutControlItem9
+            // 
+            this.layoutControlItem9.Control = this.checkEditEpostaAra;
+            this.layoutControlItem9.Location = new System.Drawing.Point(0, 188);
+            this.layoutControlItem9.Name = "layoutControlItem9";
+            this.layoutControlItem9.Size = new System.Drawing.Size(485, 34);
+            this.layoutControlItem9.TextVisible = false;
+            // 
+            // layoutControlItem10
+            // 
+            this.layoutControlItem10.Control = this.spinWebsiteTimeout;
+            this.layoutControlItem10.Location = new System.Drawing.Point(0, 142);
+            this.layoutControlItem10.Name = "layoutControlItem10";
+            this.layoutControlItem10.Size = new System.Drawing.Size(485, 46);
+            this.layoutControlItem10.Text = "Web Sitesi Zaman Aşımı (sn):";
+            this.layoutControlItem10.TextSize = new System.Drawing.Size(220, 24);
             // 
             // guna2Panel3
             // 
@@ -499,94 +699,31 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.menuAdresKopyala),
             new DevExpress.XtraBars.LinkPersistInfo(this.menuTelefonKopyala),
             new DevExpress.XtraBars.LinkPersistInfo(this.menuGoogleAdresiniKopyala),
-            new DevExpress.XtraBars.LinkPersistInfo(this.menuWebSitesiGit)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.menuWebSitesiGit),
+            new DevExpress.XtraBars.LinkPersistInfo(this.menuEpostaKopyala),
+            new DevExpress.XtraBars.LinkPersistInfo(this.menuLinkedInKopyala),
+            new DevExpress.XtraBars.LinkPersistInfo(this.menuHaritadaGoster)});
             this.popupMenuSirket.Manager = this.barManager1;
             this.popupMenuSirket.Name = "popupMenuSirket";
             // 
-            // menuAdresKopyala
+            // checkEditTarayiciGoster
             // 
-            this.menuAdresKopyala.Caption = "Adresi Kopyala";
-            this.menuAdresKopyala.Id = 1;
-            this.menuAdresKopyala.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("menuAdresKopyala.ImageOptions.SvgImage")));
-            this.menuAdresKopyala.Name = "menuAdresKopyala";
-            this.menuAdresKopyala.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuAdresKopyala_ItemClick);
+            this.checkEditTarayiciGoster.Location = new System.Drawing.Point(17, 239);
+            this.checkEditTarayiciGoster.MenuManager = this.barManager1;
+            this.checkEditTarayiciGoster.Name = "checkEditTarayiciGoster";
+            this.checkEditTarayiciGoster.Properties.AllowFocused = false;
+            this.checkEditTarayiciGoster.Properties.Caption = "Tarayıcının İşlemlerini Göster";
+            this.checkEditTarayiciGoster.Size = new System.Drawing.Size(479, 28);
+            this.checkEditTarayiciGoster.StyleController = this.layoutControl1;
+            this.checkEditTarayiciGoster.TabIndex = 13;
             // 
-            // menuTelefonKopyala
+            // layoutControlItem11
             // 
-            this.menuTelefonKopyala.Caption = "Telefonu Kopyala";
-            this.menuTelefonKopyala.Id = 2;
-            this.menuTelefonKopyala.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("menuTelefonKopyala.ImageOptions.SvgImage")));
-            this.menuTelefonKopyala.Name = "menuTelefonKopyala";
-            this.menuTelefonKopyala.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuTelefonKopyala_ItemClick);
-            // 
-            // menuGoogleAdresiniKopyala
-            // 
-            this.menuGoogleAdresiniKopyala.Caption = "Google Harita Linkini Kopyala";
-            this.menuGoogleAdresiniKopyala.Id = 3;
-            this.menuGoogleAdresiniKopyala.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("menuGoogleAdresiniKopyala.ImageOptions.SvgImage")));
-            this.menuGoogleAdresiniKopyala.Name = "menuGoogleAdresiniKopyala";
-            this.menuGoogleAdresiniKopyala.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuGoogleAdresiniKopyala_ItemClick);
-            // 
-            // menuWebSitesiGit
-            // 
-            this.menuWebSitesiGit.Caption = "Website\'ye Git";
-            this.menuWebSitesiGit.Id = 4;
-            this.menuWebSitesiGit.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("menuWebSitesiGit.ImageOptions.SvgImage")));
-            this.menuWebSitesiGit.Name = "menuWebSitesiGit";
-            this.menuWebSitesiGit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuWebSitesiGit_ItemClick);
-            // 
-            // barManager1
-            // 
-            this.barManager1.DockControls.Add(this.barDockControlTop);
-            this.barManager1.DockControls.Add(this.barDockControlBottom);
-            this.barManager1.DockControls.Add(this.barDockControlLeft);
-            this.barManager1.DockControls.Add(this.barDockControlRight);
-            this.barManager1.Form = this;
-            this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.barButtonItem1,
-            this.menuAdresKopyala,
-            this.menuTelefonKopyala,
-            this.menuGoogleAdresiniKopyala,
-            this.menuWebSitesiGit});
-            this.barManager1.MaxItemId = 5;
-            // 
-            // barDockControlTop
-            // 
-            this.barDockControlTop.CausesValidation = false;
-            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(1198, 0);
-            // 
-            // barDockControlBottom
-            // 
-            this.barDockControlBottom.CausesValidation = false;
-            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 597);
-            this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1198, 0);
-            // 
-            // barDockControlLeft
-            // 
-            this.barDockControlLeft.CausesValidation = false;
-            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 597);
-            // 
-            // barDockControlRight
-            // 
-            this.barDockControlRight.CausesValidation = false;
-            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1198, 0);
-            this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 597);
-            // 
-            // barButtonItem1
-            // 
-            this.barButtonItem1.Caption = "barButtonItem1";
-            this.barButtonItem1.Id = 0;
-            this.barButtonItem1.Name = "barButtonItem1";
+            this.layoutControlItem11.Control = this.checkEditTarayiciGoster;
+            this.layoutControlItem11.Location = new System.Drawing.Point(0, 222);
+            this.layoutControlItem11.Name = "layoutControlItem11";
+            this.layoutControlItem11.Size = new System.Drawing.Size(485, 34);
+            this.layoutControlItem11.TextVisible = false;
             // 
             // Form1
             // 
@@ -623,7 +760,9 @@
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinWebsiteTimeout.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditEpostaAra.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinAramaDerinligi.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAnahtarKelime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtKonum.Properties)).EndInit();
@@ -634,11 +773,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             this.guna2Panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlSirketler)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewSirketler)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuSirket)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditTarayiciGoster.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -661,8 +803,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private Guna.UI2.WinForms.Guna2GradientTileButton btnAramayiBaslat;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
-        private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private Guna.UI2.WinForms.Guna2GradientTileButton guna2GradientTileButton2;
         private DevExpress.XtraGrid.GridControl gridControlSirketler;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewSirketler;
@@ -688,6 +828,17 @@
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        private Guna.UI2.WinForms.Guna2GradientTileButton btnDurdur;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
+        private DevExpress.XtraEditors.CheckEdit checkEditEpostaAra;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
+        private DevExpress.XtraEditors.SpinEdit spinWebsiteTimeout;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
+        private DevExpress.XtraBars.BarButtonItem menuEpostaKopyala;
+        private DevExpress.XtraBars.BarButtonItem menuLinkedInKopyala;
+        private DevExpress.XtraBars.BarButtonItem menuHaritadaGoster;
+        private DevExpress.XtraEditors.CheckEdit checkEditTarayiciGoster;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
     }
 }
 
