@@ -24,7 +24,7 @@ namespace Firmalytics
             new DriverManager().SetUpDriver(new ChromeConfig());
 
             var sirketLinkleri = new List<string>();
-            var sirketler = new ConcurrentBag<Sirket>(); 
+            var sirketler = new ConcurrentBag<Sirket>();
 
             try
             {
@@ -37,7 +37,7 @@ namespace Firmalytics
                 var driverService = ChromeDriverService.CreateDefaultService();
                 driverService.HideCommandPromptWindow = true;
 
-                using (var driver = new ChromeDriver(driverService, ilkChromeOptions)) 
+                using (var driver = new ChromeDriver(driverService, ilkChromeOptions))
                 {
                     driver.Navigate().GoToUrl("https://www.google.com/maps");
                     await Task.Delay(3000, token);
@@ -58,13 +58,13 @@ namespace Firmalytics
                     int mevcutKartSayisi = 0;
                     while (sirketLinkleri.Count < maksSonuc)
                     {
-                        token.ThrowIfCancellationRequested(); 
+                        token.ThrowIfCancellationRequested();
 
                         var isletmeKartlari = driver.FindElements(By.CssSelector("a.hfpxzc"));
                         if (isletmeKartlari.Count == mevcutKartSayisi)
                         {
                             Log("Daha fazla sonuç bulunamadı.");
-                            break; 
+                            break;
                         }
 
                         mevcutKartSayisi = isletmeKartlari.Count;
@@ -76,7 +76,7 @@ namespace Firmalytics
                                            .ToList();
 
                         sirketLinkleri.AddRange(yeniLinkler);
-                        sirketLinkleri = sirketLinkleri.Distinct().ToList(); 
+                        sirketLinkleri = sirketLinkleri.Distinct().ToList();
 
                         if (sirketLinkleri.Count >= maksSonuc) break;
 
@@ -85,7 +85,7 @@ namespace Firmalytics
                     }
 
                     sirketLinkleri = sirketLinkleri.Take(maksSonuc).ToList();
-                } 
+                }
             }
             catch (OperationCanceledException)
             {
@@ -94,7 +94,7 @@ namespace Firmalytics
             catch (Exception ex)
             {
                 Log($"Link toplama aşamasında hata: {ex.Message}");
-                return sirketler.ToList(); 
+                return sirketler.ToList();
             }
 
             if (!sirketLinkleri.Any())
@@ -122,21 +122,53 @@ namespace Firmalytics
                         var parallelDriverService = ChromeDriverService.CreateDefaultService();
                         parallelDriverService.HideCommandPromptWindow = true;
 
-                        using (var driver = new ChromeDriver(parallelDriverService, chromeOptions)) 
+                        using (var driver = new ChromeDriver(parallelDriverService, chromeOptions))
                         {
                             driver.Navigate().GoToUrl(link);
-                            await Task.Delay(2000, token); 
+                            await Task.Delay(2000, token);
 
-                            Sirket yeniSirket = new Sirket
+                            Sirket yeniSirket = new Sirket();
+
+                            yeniSirket.IsletmeAdi = CekVeriWithRetry(driver, By.CssSelector("h1.DUwDvf"));
+
+                            yeniSirket.Adres = CekVeriWithRetry(driver, By.CssSelector("button[data-item-id='address'] div.Io6YTe"));
+                            if (yeniSirket.Adres == "Bulunamadı")
                             {
-                                IsletmeAdi = CekVeriWithRetry(driver, By.CssSelector("h1.DUwDvf")),
-                                Adres = CekVeriWithRetry(driver, By.CssSelector("button[data-item-id='address'] div.fontBodyMedium")),
-                                Telefon = CekVeriWithRetry(driver, By.CssSelector("button[data-item-id*='phone:tel:'] div.fontBodyMedium")),
-                                WebSitesi = CekVeriWithRetry(driver, By.CssSelector("a[data-item-id='authority'] div.fontBodyMedium")),
-                                Puan = CekVeriWithRetry(driver, By.CssSelector("div.F7nice span[aria-hidden]")),
-                                YorumSayisi = CekVeriWithRetry(driver, By.CssSelector("div.F7nice button.DkEaL")).Replace("(", "").Replace(")", ""),
-                                HaritaLinki = driver.Url
-                            };
+                                yeniSirket.Adres = CekAttributeWithRetry(driver, By.CssSelector("button[data-item-id='address']"), "aria-label", "Adres: ");
+                            }
+
+                            yeniSirket.Telefon = CekVeriWithRetry(driver, By.CssSelector("button[data-item-id^='phone:tel:'] div.Io6YTe"));
+                            if (yeniSirket.Telefon == "Bulunamadı")
+                            {
+                                yeniSirket.Telefon = CekAttributeWithRetry(driver, By.CssSelector("button[data-item-id^='phone:tel:']"), "aria-label", "Telefon: ");
+                            }
+
+                            string websiteUrl = CekAttributeWithRetry(driver, By.CssSelector("a[data-item-id='authority']"), "href");
+                            if (websiteUrl != "Bulunamadı")
+                            {
+                                try
+                                {
+                                    Uri uri = new Uri(websiteUrl);
+                                    string host = uri.Host;
+                                    if (host.StartsWith("www."))
+                                    {
+                                        host = host.Substring(4);
+                                    }
+                                    yeniSirket.WebSitesi = host;
+                                }
+                                catch (UriFormatException)
+                                {
+                                    yeniSirket.WebSitesi = CekVeriWithRetry(driver, By.CssSelector("a[data-item-id='authority'] div.Io6YTe"));
+                                }
+                            }
+                            else
+                            {
+                                yeniSirket.WebSitesi = "Bulunamadı";
+                            }
+
+                            yeniSirket.Puan = CekVeriWithRetry(driver, By.CssSelector("div.F7nice span[aria-hidden]"));
+                            yeniSirket.YorumSayisi = CekVeriWithRetry(driver, By.CssSelector("div.F7nice button.DkEaL")).Replace("(", "").Replace(")", "");
+                            yeniSirket.HaritaLinki = driver.Url;
 
                             var koordinatlar = KoordinatCek(driver.Url);
                             yeniSirket.Enlem = koordinatlar.Item1;
@@ -150,7 +182,7 @@ namespace Firmalytics
                             if (!sirketler.Any(s => s.IsletmeAdi == yeniSirket.IsletmeAdi && s.Adres == yeniSirket.Adres))
                             {
                                 sirketler.Add(yeniSirket);
-                                Log($"Bulundu: {yeniSirket.IsletmeAdi} (E-posta: {yeniSirket.Eposta})");
+                                Log($"Bulundu: {yeniSirket.IsletmeAdi} (Web: {yeniSirket.WebSitesi}, E-posta: {yeniSirket.Eposta})");
                             }
                         }
                     }
@@ -183,7 +215,7 @@ namespace Firmalytics
             return sirketler.ToList();
         }
 
-        #region Mevcut Yardımcı Metotlar (Değişiklik Yok)
+        #region Mevcut Yardımcı Metotlar
         private async Task IletisimBilgileriniCekAsync(IWebDriver driver, Sirket sirket, int websiteTimeout, CancellationToken token)
         {
             Log($"'{sirket.IsletmeAdi}' için web sitesi taranıyor: {sirket.WebSitesi}");
@@ -291,9 +323,47 @@ namespace Firmalytics
         {
             for (int i = 0; i <= retries; i++)
             {
-                try { return driver.FindElement(by).Text; }
-                catch (NoSuchElementException) { if (i == retries) return "Bulunamadı"; Thread.Sleep(500); }
-                catch (StaleElementReferenceException) { if (i == retries) return "Bulunamadı"; Thread.Sleep(500); }
+                try
+                {
+                    string text = driver.FindElement(by).Text;
+                    if (!string.IsNullOrWhiteSpace(text))
+                    {
+                        return text;
+                    }
+                }
+                catch (NoSuchElementException) { }
+                catch (StaleElementReferenceException) { }
+
+                if (i < retries)
+                {
+                    Thread.Sleep(500);
+                }
+            }
+            return "Bulunamadı";
+        }
+        private string CekAttributeWithRetry(IWebDriver driver, By by, string attributeName, string prefixToRemove = "", int retries = 2)
+        {
+            for (int i = 0; i <= retries; i++)
+            {
+                try
+                {
+                    string attributeValue = driver.FindElement(by).GetAttribute(attributeName);
+                    if (!string.IsNullOrWhiteSpace(attributeValue))
+                    {
+                        if (!string.IsNullOrEmpty(prefixToRemove) && attributeValue.StartsWith(prefixToRemove))
+                        {
+                            return attributeValue.Substring(prefixToRemove.Length).Trim();
+                        }
+                        return attributeValue;
+                    }
+                }
+                catch (NoSuchElementException) { }
+                catch (StaleElementReferenceException) { }
+
+                if (i < retries)
+                {
+                    Thread.Sleep(500);
+                }
             }
             return "Bulunamadı";
         }
