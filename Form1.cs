@@ -31,6 +31,9 @@ namespace Firmalytics
             gridViewSirketler.MouseDown += gridViewSirketler_MouseDown;
             spinAramaDerinligi.Properties.Mask.EditMask = "d";
             spinAramaDerinligi.Properties.IsFloatValue = false;
+
+            spinParalelGorevSayisi.Properties.Mask.EditMask = "d";
+            spinParalelGorevSayisi.Properties.IsFloatValue = false;
         }
 
         private async void btnAramayiBaslat_Click(object sender, EventArgs e)
@@ -40,6 +43,7 @@ namespace Firmalytics
             int maksSonuc = (int)spinAramaDerinligi.Value;
             bool epostaAra = checkEditEpostaAra.Checked;
             bool tarayiciGoster = checkEditTarayiciGoster.Checked;
+            int paralelGorevSayisi = (int)spinParalelGorevSayisi.Value;
 
             int websiteTimeout = (int)spinWebsiteTimeout.Value;
 
@@ -58,7 +62,7 @@ namespace Firmalytics
                 scraper.OnLogMessage += LogYaz;
                 scraper.OnProgressUpdate += ProgressGuncelle;
 
-                var sirketListesi = await Task.Run(() => scraper.GoogleAramaYapAsync(konum, anahtarKelime, maksSonuc, epostaAra, websiteTimeout, cts.Token, tarayiciGoster));
+                var sirketListesi = await Task.Run(() => scraper.GoogleAramaYapAsync(konum, anahtarKelime, maksSonuc, epostaAra, websiteTimeout, cts.Token, tarayiciGoster, paralelGorevSayisi));
 
                 if (cts.IsCancellationRequested)
                 {
@@ -101,6 +105,8 @@ namespace Firmalytics
             spinWebsiteTimeout.Enabled = !basladiMi;
             checkEditEpostaAra.Enabled = !basladiMi;
             checkEditTarayiciGoster.Enabled = !basladiMi;
+
+            spinParalelGorevSayisi.Enabled = !basladiMi;
 
             if (basladiMi)
             {

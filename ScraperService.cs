@@ -1,14 +1,15 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-
+using WebDriverManager;
+using WebDriverManager.DriverConfigs.Impl;
 
 namespace Firmalytics
 {
@@ -16,22 +17,27 @@ namespace Firmalytics
     {
         public event Action<string> OnLogMessage;
         public event Action<int> OnProgressUpdate;
+        private int _islenenSirketSayisi = 0;
 
-        public async Task<List<Sirket>> GoogleAramaYapAsync(string konum, string anahtarKelime, int maksSonuc, bool ePostaAramasiYapilsin, int websiteTimeout, CancellationToken token,bool tarayiciGoster)
+        public async Task<List<Sirket>> GoogleAramaYapAsync(string konum, string anahtarKelime, int maksSonuc, bool ePostaAramasiYapilsin, int websiteTimeout, CancellationToken token, bool tarayiciGoster, int paralelGorevSayisi)
         {
-            var sirketler = new List<Sirket>();
-            var chromeOptions = new ChromeOptions();
-            if(!tarayiciGoster) chromeOptions.AddArgument("--headless");
-            chromeOptions.AddArgument("--disable-gpu");
-            chromeOptions.AddArgument("--log-level=3");
-            chromeOptions.AddArgument("--lang=tr-TR");
+            new DriverManager().SetUpDriver(new ChromeConfig());
 
-            var driverService = ChromeDriverService.CreateDefaultService();
-            driverService.HideCommandPromptWindow = true;
+            var sirketLinkleri = new List<string>();
+            var sirketler = new ConcurrentBag<Sirket>(); 
 
-            using (var driver = new ChromeDriver(driverService, chromeOptions))
+            try
             {
-                try
+                var ilkChromeOptions = new ChromeOptions();
+                if (!tarayiciGoster) ilkChromeOptions.AddArgument("--headless");
+                ilkChromeOptions.AddArgument("--disable-gpu");
+                ilkChromeOptions.AddArgument("--log-level=3");
+                ilkChromeOptions.AddArgument("--lang=tr-TR");
+
+                var driverService = ChromeDriverService.CreateDefaultService();
+                driverService.HideCommandPromptWindow = true;
+
+                using (var driver = new ChromeDriver(driverService, ilkChromeOptions)) 
                 {
                     driver.Navigate().GoToUrl("https://www.google.com/maps");
                     await Task.Delay(3000, token);
@@ -46,42 +52,80 @@ namespace Firmalytics
                     if (scrollablePanel == null)
                     {
                         Log("Sonuç listesi paneli bulunamadı. Arama sonlandırılıyor.");
-                        return sirketler;
+                        return new List<Sirket>();
                     }
 
-                    // Sayfayı kaydırarak tüm sonuçları yükle
                     int mevcutKartSayisi = 0;
-                    while (true)
+                    while (sirketLinkleri.Count < maksSonuc)
                     {
-                        if (token.IsCancellationRequested) break;
+                        token.ThrowIfCancellationRequested(); 
+
                         var isletmeKartlari = driver.FindElements(By.CssSelector("a.hfpxzc"));
-                        if (isletmeKartlari.Count >= maksSonuc || isletmeKartlari.Count == mevcutKartSayisi)
+                        if (isletmeKartlari.Count == mevcutKartSayisi)
                         {
-                            break;
+                            Log("Daha fazla sonuç bulunamadı.");
+                            break; 
                         }
+
                         mevcutKartSayisi = isletmeKartlari.Count;
                         Log($"{mevcutKartSayisi} işletme yüklendi, daha fazlası için sayfa kaydırılıyor...");
+
+                        var yeniLinkler = isletmeKartlari
+                                           .Select(k => k.GetAttribute("href"))
+                                           .Where(h => !string.IsNullOrEmpty(h))
+                                           .ToList();
+
+                        sirketLinkleri.AddRange(yeniLinkler);
+                        sirketLinkleri = sirketLinkleri.Distinct().ToList(); 
+
+                        if (sirketLinkleri.Count >= maksSonuc) break;
+
                         ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollTop = arguments[0].scrollHeight", scrollablePanel);
                         await Task.Delay(2500, token);
                     }
 
-                    var sirketLinkleri = driver.FindElements(By.CssSelector("a.hfpxzc"))
-                                               .Take(maksSonuc)
-                                               .Select(k => k.GetAttribute("href"))
-                                               .Distinct()
-                                               .ToList();
+                    sirketLinkleri = sirketLinkleri.Take(maksSonuc).ToList();
+                } 
+            }
+            catch (OperationCanceledException)
+            {
+                Log("Link toplama aşaması kullanıcı tarafından iptal edildi. Mevcut linklerle devam ediliyor.");
+            }
+            catch (Exception ex)
+            {
+                Log($"Link toplama aşamasında hata: {ex.Message}");
+                return sirketler.ToList(); 
+            }
 
-                    Log($"Toplam {sirketLinkleri.Count} işletmenin detayları çekilecek...");
-                    int islenen = 0;
+            if (!sirketLinkleri.Any())
+            {
+                Log("İşletme detayı alınacak link bulunamadı.");
+                return sirketler.ToList();
+            }
+            Log($"Toplam {sirketLinkleri.Count} işletmenin detayları {paralelGorevSayisi} koldan çekilecek...");
+            _islenenSirketSayisi = 0;
 
-                    foreach (var link in sirketLinkleri)
+            using (var semaphore = new SemaphoreSlim(paralelGorevSayisi))
+            {
+                var tasks = sirketLinkleri.Select(async link =>
+                {
+                    await semaphore.WaitAsync(token);
+                    try
                     {
-                        if (token.IsCancellationRequested) break;
+                        if (token.IsCancellationRequested) return;
 
-                        try
+                        var chromeOptions = new ChromeOptions();
+                        if (!tarayiciGoster) chromeOptions.AddArgument("--headless");
+                        chromeOptions.AddArgument("--disable-gpu");
+                        chromeOptions.AddArgument("--log-level=3");
+                        chromeOptions.AddArgument("--lang=tr-TR");
+                        var parallelDriverService = ChromeDriverService.CreateDefaultService();
+                        parallelDriverService.HideCommandPromptWindow = true;
+
+                        using (var driver = new ChromeDriver(parallelDriverService, chromeOptions)) 
                         {
                             driver.Navigate().GoToUrl(link);
-                            await Task.Delay(2000, token);
+                            await Task.Delay(2000, token); 
 
                             Sirket yeniSirket = new Sirket
                             {
@@ -98,10 +142,8 @@ namespace Firmalytics
                             yeniSirket.Enlem = koordinatlar.Item1;
                             yeniSirket.Boylam = koordinatlar.Item2;
 
-                            // E-posta ve LinkedIn Arama (isteğe bağlı)
                             if (ePostaAramasiYapilsin && !string.IsNullOrEmpty(yeniSirket.WebSitesi) && yeniSirket.WebSitesi != "Bulunamadı")
                             {
-                                // --- DEĞİŞİKLİK 2: 'websiteTimeout' parametresi buraya da iletildi.
                                 await IletisimBilgileriniCekAsync(driver, yeniSirket, websiteTimeout, token);
                             }
 
@@ -111,28 +153,37 @@ namespace Firmalytics
                                 Log($"Bulundu: {yeniSirket.IsletmeAdi} (E-posta: {yeniSirket.Eposta})");
                             }
                         }
-                        catch (Exception ex)
-                        {
-                            Log($"Bir işletme işlenirken hata oluştu: {ex.Message}");
-                        }
-                        finally
-                        {
-                            islenen++;
-                            ProgressGuncelle((int)((double)islenen / sirketLinkleri.Count * 100));
-                        }
                     }
+                    catch (OperationCanceledException)
+                    {
+                        Log("Bir görev iptal edildi.");
+                    }
+                    catch (Exception ex)
+                    {
+                        Log($"Bir işletme işlenirken hata oluştu ({link}): {ex.Message.Split('\n')[0]}");
+                    }
+                    finally
+                    {
+                        Interlocked.Increment(ref _islenenSirketSayisi);
+                        ProgressGuncelle((int)((double)_islenenSirketSayisi / sirketLinkleri.Count * 100));
+                        semaphore.Release();
+                    }
+                });
+
+                try
+                {
+                    await Task.WhenAll(tasks);
                 }
                 catch (OperationCanceledException)
                 {
-                    Log("Arama kullanıcı tarafından iptal edildi.");
-                }
-                catch (Exception ex)
-                {
-                    Log($"Genel bir hata oluştu: {ex.Message}");
+                    Log("Detay çekme aşaması kullanıcı tarafından iptal edildi.");
                 }
             }
-            return sirketler;
+
+            return sirketler.ToList();
         }
+
+        #region Mevcut Yardımcı Metotlar (Değişiklik Yok)
         private async Task IletisimBilgileriniCekAsync(IWebDriver driver, Sirket sirket, int websiteTimeout, CancellationToken token)
         {
             Log($"'{sirket.IsletmeAdi}' için web sitesi taranıyor: {sirket.WebSitesi}");
@@ -150,7 +201,6 @@ namespace Firmalytics
                 driver.Navigate().GoToUrl(anaSayfaUrl);
                 await Task.Delay(3000, token);
 
-                // Ana sayfada e-posta var mı diye hızlıca kontrol et
                 if (SayfadanEpostaCek(driver.PageSource, sirket))
                 {
                     Log("E-posta ana sayfada bulundu.");
@@ -166,15 +216,15 @@ namespace Firmalytics
                 string[] keywords = { "iletisim", "contact", "bize-ulasin", "kunye", "impressum", "legal" };
 
                 var contactLinks = allLinks
-                    .Where(href => keywords.Any(kw => href.ToLower().Contains(kw)))
-                    .Take(10) 
+                    .Where(href => href != null && keywords.Any(kw => href.ToLower().Contains(kw)))
+                    .Take(10)
                     .ToList();
 
                 Log($"{contactLinks.Count} potansiyel iletişim sayfası bulundu. Taranıyor...");
 
                 foreach (var link in contactLinks)
                 {
-                    if (token.IsCancellationRequested) return;
+                    token.ThrowIfCancellationRequested();
                     try
                     {
                         Log($"Taranıyor: {link}");
@@ -194,6 +244,10 @@ namespace Firmalytics
 
                 Log("Potansiyel iletişim sayfalarında e-posta bulunamadı.");
             }
+            catch (OperationCanceledException)
+            {
+                Log("Web sitesi taraması iptal edildi.");
+            }
             catch (Exception ex)
             {
                 Log($"Web sitesi taranırken hata: {ex.Message.Split('\n')[0]}");
@@ -203,21 +257,24 @@ namespace Firmalytics
                 driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(30);
             }
         }
-
-        // E-posta ve LinkedIn çeken yardımcı metot
         private bool SayfadanEpostaCek(string pageSource, Sirket sirket)
         {
             pageSource = pageSource.ToLower();
 
-            // E-posta ara
             var emailRegex = new Regex(@"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}");
             var emailMatches = emailRegex.Matches(pageSource);
-            if (emailMatches.Count > 0)
+            var ignoreList = new[] { ".png", ".jpg", ".jpeg", ".gif", ".svg", "wixpress.com" };
+            var validEmails = emailMatches.Cast<Match>()
+                                          .Select(m => m.Value)
+                                          .Where(m => !ignoreList.Any(ext => m.EndsWith(ext)))
+                                          .Distinct()
+                                          .ToList();
+
+            if (validEmails.Any())
             {
-                sirket.Eposta = string.Join(", ", emailMatches.Cast<Match>().Select(m => m.Value).Distinct());
+                sirket.Eposta = string.Join(", ", validEmails);
             }
 
-            // LinkedIn ara (sadece henüz bulunmadıysa)
             if (sirket.LinkedIn == "Bulunamadı")
             {
                 var linkedinRegex = new Regex(@"https?://[a-z.]*linkedin\.com/company/[a-zA-Z0-9_-]+");
@@ -230,40 +287,25 @@ namespace Firmalytics
 
             return sirket.Eposta != "Bulunamadı";
         }
-
-
-        // Elementi bulamazsa tekrar deneyen, daha sağlam bir metot
         private string CekVeriWithRetry(IWebDriver driver, By by, int retries = 2)
         {
             for (int i = 0; i <= retries; i++)
             {
-                try
-                {
-                    return driver.FindElement(by).Text;
-                }
-                catch (NoSuchElementException)
-                {
-                    if (i == retries) return "Bulunamadı";
-                    Thread.Sleep(500); // Kısa bir süre bekle ve tekrar dene
-                }
+                try { return driver.FindElement(by).Text; }
+                catch (NoSuchElementException) { if (i == retries) return "Bulunamadı"; Thread.Sleep(500); }
+                catch (StaleElementReferenceException) { if (i == retries) return "Bulunamadı"; Thread.Sleep(500); }
             }
             return "Bulunamadı";
         }
-
         private IWebElement BulmayaCalis(IWebDriver driver, By by, int retries = 2)
         {
             for (int i = 0; i <= retries; i++)
             {
                 try { return driver.FindElement(by); }
-                catch (NoSuchElementException)
-                {
-                    if (i == retries) return null;
-                    Thread.Sleep(1000);
-                }
+                catch (NoSuchElementException) { if (i == retries) return null; Thread.Sleep(1000); }
             }
             return null;
         }
-
         private Tuple<double, double> KoordinatCek(string url)
         {
             try
@@ -276,8 +318,8 @@ namespace Firmalytics
             }
             catch { return new Tuple<double, double>(0, 0); }
         }
-
         private void Log(string message) => OnLogMessage?.Invoke(message);
         private void ProgressGuncelle(int progress) => OnProgressUpdate?.Invoke(progress);
+        #endregion
     }
 }

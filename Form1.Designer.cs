@@ -45,7 +45,7 @@
             this.pnlKontrol = new Guna.UI2.WinForms.Guna2Panel();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.spinWebsiteTimeout = new DevExpress.XtraEditors.SpinEdit();
+            this.checkEditTarayiciGoster = new DevExpress.XtraEditors.CheckEdit();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -59,6 +59,7 @@
             this.menuEpostaKopyala = new DevExpress.XtraBars.BarButtonItem();
             this.menuLinkedInKopyala = new DevExpress.XtraBars.BarButtonItem();
             this.menuHaritadaGoster = new DevExpress.XtraBars.BarButtonItem();
+            this.spinWebsiteTimeout = new DevExpress.XtraEditors.SpinEdit();
             this.checkEditEpostaAra = new DevExpress.XtraEditors.CheckEdit();
             this.btnDurdur = new Guna.UI2.WinForms.Guna2GradientTileButton();
             this.btnAramayiBaslat = new Guna.UI2.WinForms.Guna2GradientTileButton();
@@ -74,13 +75,14 @@
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
             this.gridControlSirketler = new DevExpress.XtraGrid.GridControl();
             this.gridViewSirketler = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.guna2GradientTileButton2 = new Guna.UI2.WinForms.Guna2GradientTileButton();
             this.popupMenuSirket = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.checkEditTarayiciGoster = new DevExpress.XtraEditors.CheckEdit();
-            this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.spinParalelGorevSayisi = new DevExpress.XtraEditors.SpinEdit();
+            this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoLogPenceresi.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
@@ -96,8 +98,9 @@
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spinWebsiteTimeout.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditTarayiciGoster.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinWebsiteTimeout.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditEpostaAra.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinAramaDerinligi.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAnahtarKelime.Properties)).BeginInit();
@@ -111,12 +114,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             this.guna2Panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlSirketler)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewSirketler)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuSirket)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditTarayiciGoster.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinParalelGorevSayisi.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             this.SuspendLayout();
             // 
             // guna2Panel1
@@ -125,9 +129,9 @@
             this.guna2Panel1.Controls.Add(this.progressBar);
             this.guna2Panel1.Controls.Add(this.groupControl2);
             this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.guna2Panel1.Location = new System.Drawing.Point(0, 395);
+            this.guna2Panel1.Location = new System.Drawing.Point(0, 476);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(1198, 202);
+            this.guna2Panel1.Size = new System.Drawing.Size(1255, 202);
             this.guna2Panel1.TabIndex = 0;
             // 
             // memoLogPenceresi
@@ -136,7 +140,7 @@
             this.memoLogPenceresi.Location = new System.Drawing.Point(258, 0);
             this.memoLogPenceresi.Name = "memoLogPenceresi";
             this.memoLogPenceresi.Properties.ReadOnly = true;
-            this.memoLogPenceresi.Size = new System.Drawing.Size(940, 177);
+            this.memoLogPenceresi.Size = new System.Drawing.Size(997, 177);
             this.memoLogPenceresi.TabIndex = 3;
             // 
             // progressBar
@@ -148,7 +152,7 @@
             this.progressBar.Name = "progressBar";
             this.progressBar.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(254)))));
             this.progressBar.ProgressColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(104)))), ((int)(((byte)(206)))));
-            this.progressBar.Size = new System.Drawing.Size(940, 25);
+            this.progressBar.Size = new System.Drawing.Size(997, 25);
             this.progressBar.TabIndex = 2;
             this.progressBar.Text = "guna2ProgressBar1";
             this.progressBar.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
@@ -280,7 +284,7 @@
             this.pnlKontrol.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlKontrol.Location = new System.Drawing.Point(0, 0);
             this.pnlKontrol.Name = "pnlKontrol";
-            this.pnlKontrol.Size = new System.Drawing.Size(517, 395);
+            this.pnlKontrol.Size = new System.Drawing.Size(517, 476);
             this.pnlKontrol.TabIndex = 1;
             // 
             // groupControl1
@@ -291,12 +295,13 @@
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(517, 395);
+            this.groupControl1.Size = new System.Drawing.Size(517, 476);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Arama Çubuğu";
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.spinParalelGorevSayisi);
             this.layoutControl1.Controls.Add(this.checkEditTarayiciGoster);
             this.layoutControl1.Controls.Add(this.spinWebsiteTimeout);
             this.layoutControl1.Controls.Add(this.checkEditEpostaAra);
@@ -316,37 +321,20 @@
             this.layoutControl1.OptionsPrint.AppearanceGroupCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControl1.OptionsPrint.AppearanceGroupCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(513, 361);
+            this.layoutControl1.Size = new System.Drawing.Size(513, 442);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
-            // spinWebsiteTimeout
+            // checkEditTarayiciGoster
             // 
-            this.spinWebsiteTimeout.EditValue = new decimal(new int[] {
-            15,
-            0,
-            0,
-            0});
-            this.spinWebsiteTimeout.Location = new System.Drawing.Point(255, 159);
-            this.spinWebsiteTimeout.MenuManager = this.barManager1;
-            this.spinWebsiteTimeout.Name = "spinWebsiteTimeout";
-            this.spinWebsiteTimeout.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spinWebsiteTimeout.Properties.IsFloatValue = false;
-            this.spinWebsiteTimeout.Properties.MaskSettings.Set("mask", "N00");
-            this.spinWebsiteTimeout.Properties.MaxValue = new decimal(new int[] {
-            60,
-            0,
-            0,
-            0});
-            this.spinWebsiteTimeout.Properties.MinValue = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.spinWebsiteTimeout.Size = new System.Drawing.Size(241, 40);
-            this.spinWebsiteTimeout.StyleController = this.layoutControl1;
-            this.spinWebsiteTimeout.TabIndex = 12;
+            this.checkEditTarayiciGoster.Location = new System.Drawing.Point(17, 285);
+            this.checkEditTarayiciGoster.MenuManager = this.barManager1;
+            this.checkEditTarayiciGoster.Name = "checkEditTarayiciGoster";
+            this.checkEditTarayiciGoster.Properties.AllowFocused = false;
+            this.checkEditTarayiciGoster.Properties.Caption = "Tarayıcının İşlemlerini Göster";
+            this.checkEditTarayiciGoster.Size = new System.Drawing.Size(479, 28);
+            this.checkEditTarayiciGoster.StyleController = this.layoutControl1;
+            this.checkEditTarayiciGoster.TabIndex = 13;
             // 
             // barManager1
             // 
@@ -372,15 +360,15 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(1198, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(1255, 0);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 597);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 678);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1198, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1255, 0);
             // 
             // barDockControlLeft
             // 
@@ -388,15 +376,15 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 597);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 678);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1198, 0);
+            this.barDockControlRight.Location = new System.Drawing.Point(1255, 0);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 597);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 678);
             // 
             // barButtonItem1
             // 
@@ -459,9 +447,37 @@
             this.menuHaritadaGoster.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("menuHaritadaGoster.ImageOptions.SvgImage")));
             this.menuHaritadaGoster.Name = "menuHaritadaGoster";
             // 
+            // spinWebsiteTimeout
+            // 
+            this.spinWebsiteTimeout.EditValue = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            this.spinWebsiteTimeout.Location = new System.Drawing.Point(255, 159);
+            this.spinWebsiteTimeout.MenuManager = this.barManager1;
+            this.spinWebsiteTimeout.Name = "spinWebsiteTimeout";
+            this.spinWebsiteTimeout.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spinWebsiteTimeout.Properties.IsFloatValue = false;
+            this.spinWebsiteTimeout.Properties.MaskSettings.Set("mask", "N00");
+            this.spinWebsiteTimeout.Properties.MaxValue = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            this.spinWebsiteTimeout.Properties.MinValue = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.spinWebsiteTimeout.Size = new System.Drawing.Size(241, 40);
+            this.spinWebsiteTimeout.StyleController = this.layoutControl1;
+            this.spinWebsiteTimeout.TabIndex = 12;
+            // 
             // checkEditEpostaAra
             // 
-            this.checkEditEpostaAra.Location = new System.Drawing.Point(17, 205);
+            this.checkEditEpostaAra.Location = new System.Drawing.Point(17, 251);
             this.checkEditEpostaAra.MenuManager = this.barManager1;
             this.checkEditEpostaAra.Name = "checkEditEpostaAra";
             this.checkEditEpostaAra.Properties.AllowFocused = false;
@@ -484,9 +500,9 @@
             this.btnDurdur.FillColor2 = System.Drawing.Color.Red;
             this.btnDurdur.Font = new System.Drawing.Font("Segoe UI", 12.22642F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnDurdur.ForeColor = System.Drawing.Color.White;
-            this.btnDurdur.Location = new System.Drawing.Point(17, 289);
+            this.btnDurdur.Location = new System.Drawing.Point(17, 376);
             this.btnDurdur.Name = "btnDurdur";
-            this.btnDurdur.Size = new System.Drawing.Size(236, 55);
+            this.btnDurdur.Size = new System.Drawing.Size(236, 49);
             this.btnDurdur.TabIndex = 10;
             this.btnDurdur.Text = "Aramayı Durdur";
             this.btnDurdur.Click += new System.EventHandler(this.btnDurdur_Click);
@@ -504,9 +520,9 @@
             this.btnAramayiBaslat.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
             this.btnAramayiBaslat.Font = new System.Drawing.Font("Segoe UI", 12.22642F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnAramayiBaslat.ForeColor = System.Drawing.Color.White;
-            this.btnAramayiBaslat.Location = new System.Drawing.Point(259, 289);
+            this.btnAramayiBaslat.Location = new System.Drawing.Point(259, 376);
             this.btnAramayiBaslat.Name = "btnAramayiBaslat";
-            this.btnAramayiBaslat.Size = new System.Drawing.Size(237, 55);
+            this.btnAramayiBaslat.Size = new System.Drawing.Size(237, 49);
             this.btnAramayiBaslat.TabIndex = 9;
             this.btnAramayiBaslat.Text = "Aramayı Başlat";
             this.btnAramayiBaslat.Click += new System.EventHandler(this.btnAramayiBaslat_Click);
@@ -578,9 +594,10 @@
             this.layoutControlItem5,
             this.layoutControlItem9,
             this.layoutControlItem10,
-            this.layoutControlItem11});
+            this.layoutControlItem11,
+            this.layoutControlItem12});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(513, 361);
+            this.Root.Size = new System.Drawing.Size(513, 442);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
@@ -593,9 +610,9 @@
             // 
             // emptySpaceItem1
             // 
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 256);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 302);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(485, 16);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(485, 57);
             // 
             // layoutControlItem2
             // 
@@ -617,23 +634,23 @@
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.btnAramayiBaslat;
-            this.layoutControlItem4.Location = new System.Drawing.Point(242, 272);
+            this.layoutControlItem4.Location = new System.Drawing.Point(242, 359);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(243, 61);
+            this.layoutControlItem4.Size = new System.Drawing.Size(243, 55);
             this.layoutControlItem4.TextVisible = false;
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.btnDurdur;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 272);
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 359);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(242, 61);
+            this.layoutControlItem5.Size = new System.Drawing.Size(242, 55);
             this.layoutControlItem5.TextVisible = false;
             // 
             // layoutControlItem9
             // 
             this.layoutControlItem9.Control = this.checkEditEpostaAra;
-            this.layoutControlItem9.Location = new System.Drawing.Point(0, 188);
+            this.layoutControlItem9.Location = new System.Drawing.Point(0, 234);
             this.layoutControlItem9.Name = "layoutControlItem9";
             this.layoutControlItem9.Size = new System.Drawing.Size(485, 34);
             this.layoutControlItem9.TextVisible = false;
@@ -647,13 +664,21 @@
             this.layoutControlItem10.Text = "Web Sitesi Zaman Aşımı (sn):";
             this.layoutControlItem10.TextSize = new System.Drawing.Size(220, 24);
             // 
+            // layoutControlItem11
+            // 
+            this.layoutControlItem11.Control = this.checkEditTarayiciGoster;
+            this.layoutControlItem11.Location = new System.Drawing.Point(0, 268);
+            this.layoutControlItem11.Name = "layoutControlItem11";
+            this.layoutControlItem11.Size = new System.Drawing.Size(485, 34);
+            this.layoutControlItem11.TextVisible = false;
+            // 
             // guna2Panel3
             // 
             this.guna2Panel3.Controls.Add(this.gridControlSirketler);
             this.guna2Panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Panel3.Location = new System.Drawing.Point(517, 0);
             this.guna2Panel3.Name = "guna2Panel3";
-            this.guna2Panel3.Size = new System.Drawing.Size(681, 395);
+            this.guna2Panel3.Size = new System.Drawing.Size(738, 476);
             this.guna2Panel3.TabIndex = 2;
             // 
             // gridControlSirketler
@@ -662,7 +687,7 @@
             this.gridControlSirketler.Location = new System.Drawing.Point(0, 0);
             this.gridControlSirketler.MainView = this.gridViewSirketler;
             this.gridControlSirketler.Name = "gridControlSirketler";
-            this.gridControlSirketler.Size = new System.Drawing.Size(681, 395);
+            this.gridControlSirketler.Size = new System.Drawing.Size(738, 476);
             this.gridControlSirketler.TabIndex = 0;
             this.gridControlSirketler.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewSirketler});
@@ -706,30 +731,46 @@
             this.popupMenuSirket.Manager = this.barManager1;
             this.popupMenuSirket.Name = "popupMenuSirket";
             // 
-            // checkEditTarayiciGoster
+            // spinParalelGorevSayisi
             // 
-            this.checkEditTarayiciGoster.Location = new System.Drawing.Point(17, 239);
-            this.checkEditTarayiciGoster.MenuManager = this.barManager1;
-            this.checkEditTarayiciGoster.Name = "checkEditTarayiciGoster";
-            this.checkEditTarayiciGoster.Properties.AllowFocused = false;
-            this.checkEditTarayiciGoster.Properties.Caption = "Tarayıcının İşlemlerini Göster";
-            this.checkEditTarayiciGoster.Size = new System.Drawing.Size(479, 28);
-            this.checkEditTarayiciGoster.StyleController = this.layoutControl1;
-            this.checkEditTarayiciGoster.TabIndex = 13;
+            this.spinParalelGorevSayisi.EditValue = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.spinParalelGorevSayisi.Location = new System.Drawing.Point(255, 205);
+            this.spinParalelGorevSayisi.MenuManager = this.barManager1;
+            this.spinParalelGorevSayisi.Name = "spinParalelGorevSayisi";
+            this.spinParalelGorevSayisi.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spinParalelGorevSayisi.Properties.MaxValue = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.spinParalelGorevSayisi.Properties.MinValue = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.spinParalelGorevSayisi.Size = new System.Drawing.Size(241, 40);
+            this.spinParalelGorevSayisi.StyleController = this.layoutControl1;
+            this.spinParalelGorevSayisi.TabIndex = 14;
             // 
-            // layoutControlItem11
+            // layoutControlItem12
             // 
-            this.layoutControlItem11.Control = this.checkEditTarayiciGoster;
-            this.layoutControlItem11.Location = new System.Drawing.Point(0, 222);
-            this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(485, 34);
-            this.layoutControlItem11.TextVisible = false;
+            this.layoutControlItem12.Control = this.spinParalelGorevSayisi;
+            this.layoutControlItem12.Location = new System.Drawing.Point(0, 188);
+            this.layoutControlItem12.Name = "layoutControlItem12";
+            this.layoutControlItem12.Size = new System.Drawing.Size(485, 46);
+            this.layoutControlItem12.Text = "Paralel Görev Sayısı";
+            this.layoutControlItem12.TextSize = new System.Drawing.Size(220, 24);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1198, 597);
+            this.ClientSize = new System.Drawing.Size(1255, 678);
             this.Controls.Add(this.guna2Panel3);
             this.Controls.Add(this.pnlKontrol);
             this.Controls.Add(this.guna2Panel1);
@@ -760,8 +801,9 @@
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.spinWebsiteTimeout.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditTarayiciGoster.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinWebsiteTimeout.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditEpostaAra.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinAramaDerinligi.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAnahtarKelime.Properties)).EndInit();
@@ -775,12 +817,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             this.guna2Panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlSirketler)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewSirketler)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuSirket)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditTarayiciGoster.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinParalelGorevSayisi.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -839,6 +882,8 @@
         private DevExpress.XtraBars.BarButtonItem menuHaritadaGoster;
         private DevExpress.XtraEditors.CheckEdit checkEditTarayiciGoster;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
+        private DevExpress.XtraEditors.SpinEdit spinParalelGorevSayisi;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
     }
 }
 

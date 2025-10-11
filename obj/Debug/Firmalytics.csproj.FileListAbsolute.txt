@@ -75,3 +75,17 @@ C:\Users\ethem\source\repos\Firmalytics\bin\Debug\DevExpress.Map.v25.1.Core.dll
 C:\Users\ethem\source\repos\Firmalytics\bin\Debug\DevExpress.XtraMap.v25.1.dll
 C:\Users\ethem\source\repos\Firmalytics\bin\Debug\DevExpress.Map.v25.1.Core.xml
 C:\Users\ethem\source\repos\Firmalytics\bin\Debug\DevExpress.XtraMap.v25.1.xml
+C:\Users\ethem\source\repos\Firmalytics\bin\Debug\AngleSharp.dll
+C:\Users\ethem\source\repos\Firmalytics\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Users\ethem\source\repos\Firmalytics\bin\Debug\Microsoft.Win32.Registry.dll
+C:\Users\ethem\source\repos\Firmalytics\bin\Debug\System.Security.AccessControl.dll
+C:\Users\ethem\source\repos\Firmalytics\bin\Debug\System.Security.Principal.Windows.dll
+C:\Users\ethem\source\repos\Firmalytics\bin\Debug\System.Text.Encoding.CodePages.dll
+C:\Users\ethem\source\repos\Firmalytics\bin\Debug\WebDriverManager.dll
+C:\Users\ethem\source\repos\Firmalytics\bin\Debug\AngleSharp.xml
+C:\Users\ethem\source\repos\Firmalytics\bin\Debug\ICSharpCode.SharpZipLib.pdb
+C:\Users\ethem\source\repos\Firmalytics\bin\Debug\ICSharpCode.SharpZipLib.xml
+C:\Users\ethem\source\repos\Firmalytics\bin\Debug\Microsoft.Win32.Registry.xml
+C:\Users\ethem\source\repos\Firmalytics\bin\Debug\System.Security.AccessControl.xml
+C:\Users\ethem\source\repos\Firmalytics\bin\Debug\System.Security.Principal.Windows.xml
+C:\Users\ethem\source\repos\Firmalytics\bin\Debug\System.Text.Encoding.CodePages.xml
